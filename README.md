@@ -1,22 +1,46 @@
-# Ill-Conditioned Linear Systems — Diagonal Scaling Optimization
+# Optimized Two-Sided Diagonal Scaling as a Preconditioning Strategy
 
-This repository contains the computational code, experimental data, numerical results, and supplementary materials associated with the study of diagonal scaling optimization for ill-conditioned structured matrices.
+This repository contains the computational code, experimental data, numerical results, and supplementary materials associated with the research study on optimized two-sided diagonal scaling as a preconditioning strategy for ill-conditioned linear systems.
 
-## Main objective
+## Research objective
 
-The study investigates whether optimized diagonal scaling can serve as an effective preconditioning strategy by reducing condition numbers and improving the computational performance of linear-system solvers.
+The main objective of this study is to investigate whether diagonal scaling optimization can serve as an effective preconditioning strategy by reducing matrix condition numbers, improving the numerical solution of linear systems, and reducing computational cost.
 
-## Main methods
+The study focuses on the relationship between:
 
+- condition-number reduction,
+- computational cost,
+- scalability,
+- preconditioning,
+- and linear-system solver performance.
+
+## Methods
+
+The computational experiments include:
+
+- Unscaled baseline
 - Ruiz scaling
 - L-BFGS optimization
 - Ruiz → L-BFGS hybrid scaling
 - Simulated Annealing
 - Genetic Algorithm
 - Bayesian Optimization
-- ILU / AMG preconditioning
-- GMRES / CG solvers
+- ILU preconditioning
+- AMG preconditioning
+- GMRES
+- Conjugate Gradient (CG)
 
-## Reproducibility
+## Repository structure
 
-The repository is intended to provide the code and experimental materials required to reproduce the numerical experiments reported in the manuscript.
+```text
+code/
+    Main Python implementation
+
+data/
+    Experimental datasets and numerical results
+
+manuscript/
+    Manuscript source and PDF
+
+results/
+    Figures, histograms, and other numerical results
