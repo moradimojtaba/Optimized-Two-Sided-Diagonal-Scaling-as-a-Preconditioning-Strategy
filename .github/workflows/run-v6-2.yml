@@ -1,0 +1,45 @@
+name: Run V6.2 Benchmark
+
+on:
+  workflow_dispatch:
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run V6.2 benchmark
+        run: |
+          python illcondition_v6_2.py
+
+      - name: Check output directory
+        run: |
+          echo "=== Output directory ==="
+          find illcondition_v6_2_results -maxdepth 3 -type f | sort
+
+      - name: Create ZIP archive
+        run: |
+          zip -r illcondition-v6.2-results.zip illcondition_v6_2_results
+
+      - name: Upload V6.2 results
+        uses: actions/upload-artifact@v4
+        with:
+          name: illcondition-v6.2-results
+          path: |
+            illcondition_v6_2_results/**
+            illcondition-v6.2-results.zip
+          if-no-files-found: error
+          retention-days: 30
