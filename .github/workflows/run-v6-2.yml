@@ -23,12 +23,22 @@ jobs:
 
       - name: Run V6.2 benchmark
         run: |
-          python illcondition_v6_2.py
+          python code/illcondition_v6_2.py
 
       - name: Check output directory
         run: |
           echo "=== Output directory ==="
-          find illcondition_v6_2_results -maxdepth 3 -type f | sort
+          if [ -d "illcondition_v6_2_results" ]; then
+            find illcondition_v6_2_results -maxdepth 5 -type f | sort
+          else
+            echo "ERROR: Output directory was not created."
+            exit 1
+          fi
+
+      - name: Show result summary
+        run: |
+          echo "=== Result files ==="
+          find illcondition_v6_2_results -type f | sort
 
       - name: Create ZIP archive
         run: |
